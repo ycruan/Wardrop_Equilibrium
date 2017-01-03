@@ -1,0 +1,64 @@
+#play {
+    color : green;
+}
+#stat{
+    background: skyblue;
+    color: white;
+    border-radius: 20pt;
+    border-style: none;
+    width: 56pt;
+}
+.form{
+    color : white;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: cornflowerblue;
+}
+#map {
+    height: 96.5%;
+}
+.td{
+    border-style: solid;
+    border-color: white;
+    border-width: 0.05cm;
+    border-bottom-style: hidden;
+    border-top-style: hidden;
+    border-left-style: hidden;
+}
+#colorbar{
+    position:absolute;
+    z-index:2;
+    left:0;
+    bottom: 20pt;
+}
+#barimg{
+    width : 2cm;
+    height : 2cm;
+}
+#clock{
+    position:absolute;
+    z-index:3;
+    left: 42.3%;
+    top: 18.5pt;
+}
+#clocktext{
+    height: 1.5cm;
+    width: 6cm;
+    font-size:42px;
+    text-align: center;
+    resize:none;
+    border-style: none;
+    background: rgba(255,255,255,0.7);
+}
+#f8{
+    margin-left: 595pt;
+}
+#git{
+    height: 8pt;
+}
+.tdsel{
+    min-width: 115pt;
+}

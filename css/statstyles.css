@@ -1,0 +1,64 @@
+.infoBox{
+    width: 100%;
+    min-width: 1050pt;
+    border-radius: 15pt;
+    line-height: 0.2;
+}
+.td{
+    border-style: hidden;
+    width: 20cm;
+}
+#breaker{
+    width: 98%;
+    color: skyblue;
+}
+#heading{
+    height: 95pt;
+    background: lightskyblue;
+}
+.section{
+    height: 80pt;
+    background: aliceblue;
+    border-style: solid;
+    border-color: lightskyblue;
+}
+#headingBasic{
+    font-size: xx-large;
+    font-family: Arial;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+#headingIntro{
+    font-size: large;
+    font-family: "Times New Roman";
+    font-style: italic;
+    color: black;
+    margin-left: 2em;
+    margin-top: 0;
+    line-height: 1.2;
+}
+.title{
+    font-size: x-large;
+    font-family: Arial;
+    font-weight: bold;
+    color: black;
+    margin-left: 1.5em;
+}
+.intro{
+    font-size: large;
+    font-family: "Times New Roman";
+    font-style: italic;
+    color: black;
+    margin-left: 2em;
+    margin-right: 0.5em;
+    margin-top: 0;
+    line-height: 1.2;
+}
+#sec1{
+    height: 110pt;
+}
+.indcanvas{
+    width: 100%;
+    min-width: 1050pt;
+}

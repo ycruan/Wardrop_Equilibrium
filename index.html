@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Equilibrium Visualization</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script data-main="js/main" src="js/require.js"></script>
+
+</head>
+<body>
+    <div id="view" align="left">
+        <table id="table">
+            <tr>
+                <td class="td tdsel">
+                    <form id="f0" class="form">Orig
+                        <select id="select0">
+                            <option value="A" selected>Rose Bowl</option>
+                            <option value="B">Caltech</option>
+                            <option value="C">Westfield Mall</option>
+                            <option value="D">Monrovia Hosp</option>
+                            <option value="E">Speedway</option>
+                        </select>&nbsp
+                    </form>
+                </td>
+                <td class="td tdsel">
+                    <form id="f1" class="form">&nbspDest
+                        <select id="select1">
+                            <option value="A">Rose Bowl</option>
+                            <option value="B">Caltech</option>
+                            <option value="C">Westfield Mall</option>
+                            <option value="D">Monrovia Hosp</option>
+                            <option value="E" selected>Speedway</option>
+                        </select>&nbsp
+                    </form>
+                </td>
+                <td class="td tdsel">
+                    <form id="f2" class="form">&nbspDate
+                        <select id="select2">
+                            <option value ="123016" selected>PM Dec30,16</option>
+                            <option value ="010117">PM Jan01,17</option>
+                            <option value ="010217">PM Jan02,17</option>
+                        </select>&nbsp
+                    </form>
+                </td>
+                <td class="td" style="border-right-style: hidden">
+                    <form id="f6" class="form">
+                        <button type="button" id = "play">&nbspplay</button>
+                    </form>
+                </td>
+                <td class="td" style="border-right-style: hidden">
+                    <form id="f7" class="form">
+                        <button type="button" id = "stat">show stat</button>
+                    </form>
+                </td>
+                <td class="td" style="border-right-style: hidden">
+                    <form id="f8" class="form">
+                        <input type="image" src="resource/logo-github.png" id = "git" onclick="return false"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="map"></div>
+    <!--<div id="colorbar"><img src="http://.jpg" id="barimg"/></div>-->
+    <div id="clock"><textarea id="clocktext" rows="1" cols="1" disabled="value">3-7 PM</textarea></div>
+</body>
+</html>

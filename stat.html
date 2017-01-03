@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Statistical Chart</title>
+    <script data-main="js/statmain.js" src="js/require.js"></script>
+    <link rel="stylesheet" href="css/statstyles.css">
+</head>
+<body>
+    <div id="heading", class="infoBox">
+        <br />
+        <p id="headingBasic"></p>
+        <p id="headingIntro"></p>
+    </div>
+    <HR id="breaker">
+    <div id="sec0" class="infoBox section">
+        <p class="title">1. Path Groups</p>
+        <p class="intro">Paths with the same text description are deemed to be similar in nature, thus are good to be inspected as a group.
+            In the pie chart and bar chart below, we calculate the number of times every group of paths appeared in Google Map query results,
+            as well as the corresponding mean and standard deviation of travel durations.</p>
+    </div>
+    <div id="view" align="left">
+        <table>
+            <tr>
+                <td class="td">
+                    <form id="f0" class="form">
+                        <canvas id="pieChart" height="100", width="200"></canvas>
+                    </form>
+                </td>
+                <td class="td">
+                    <form id="f1" class="form">
+                        <canvas id="bar2Chart"></canvas>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div id="sec1" class="infoBox section">
+        <p class="title">2. Path Tracing</p>
+        <p class="intro">Every point in the chart below represents the moment a path is suggested by Google Map, and the corresponding
+            travel duration if we take this path. Different paths are distinguished by their coordinates. Paths with the same text description
+            but are comprised of even slightly different (lat, lng) pairs are regarded as different paths. Points belong to the same
+            path are connected with a poly-line, which interestingly happens to be a straight line in most cases. The BEST line records
+            the lowest-duration option at every time step. Lines with 5 or less points are hidden for convenience.
+            You may click the legend to hide/show the data.</p>
+    </div>
+    <br />
+    <canvas class="indcanvas" id="lineChart" height="500"></canvas>
+    <br />
+    <br />
+    <br />
+    <div id="sec2" class="infoBox section">
+        <p class="title">3. Time Slots</p>
+        <p class="intro">In this section, duration data are divided into several groups by the time they are returned in the Google Map
+            query. There should be 3 time slots for morning trips, and 4 for afternoon. For every slot, the in-slot average and standard
+            deviation are calculated. Here we don't distinguish different paths. Data from all paths are used for calculation.</p>
+    </div>
+    <br />
+    <canvas class="indcanvas" id="barChart" height="500"></canvas>
+    <br />
+    <br />
+    <br />
+    <div id="sec3" class="infoBox section">
+        <p class="title">4. Time History</p>
+        <p class="intro">The chart below keeps track of the mean and standard deviation of travel durations at each time step. A point in the
+            chart at time t is derived based on durations of all paths returned at t. At the instant when only one path is returned, the
+            standard deviation is omitted on purpose. The BEST line records the lowest-duration option for every timestamp.</p>
+    </div>
+    <br />
+    <canvas class="indcanvas" id="line2Chart" height="500"></canvas>
+</body>
+</html>
