@@ -27,7 +27,7 @@ We inspect the two rush hours:
 3. Data
 --
 All data are collected in real time via the [Google Map Python API](https://github.com/googlemaps/google-maps-services-python).
-A query is made every 2 minutes for all the 20 OD pairs. So there are in total 90 data points for AM peak, and 120 points for PM peak. The default traffic-model [（best_guess）](https://developers.google.com/maps/documentation/directions/intro#RequestParameters) was used to estimate the in-traffic duration.
+A query is made every 2 minutes for all the 20 OD pairs. So there are in total 90 data points for AM peak, and 120 points for PM peak. The default [(best_guess)](https://developers.google.com/maps/documentation/directions/intro#RequestParameters) traffic model was used to estimate the in-traffic duration.
 
 The processed data are stored as .js files in [./js/data](https://github.com/ycruan/Wardrop_Equilibrium/tree/gh-pages/js/data). For raw data please contact with the [author](mailto:ruanyichen94@gmail.com).
 
