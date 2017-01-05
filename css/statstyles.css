@@ -1,6 +1,6 @@
 .infoBox{
     width: 100%;
-    min-width: 1050pt;
+    min-width: 100%;
     border-radius: 15pt;
     line-height: 0.2;
 }
@@ -13,11 +13,11 @@
     color: skyblue;
 }
 #heading{
-    height: 95pt;
+    height: 18%;
     background: lightskyblue;
 }
 .section{
-    height: 80pt;
+    height: 20%;
     background: aliceblue;
     border-style: solid;
     border-color: lightskyblue;
@@ -56,9 +56,8 @@
     line-height: 1.2;
 }
 #sec1{
-    height: 110pt;
+    height: 28%;
 }
 .indcanvas{
     width: 100%;
-    min-width: 1050pt;
 }

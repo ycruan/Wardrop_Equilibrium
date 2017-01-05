@@ -68,7 +68,7 @@ class Trip:
             if key in is_visited:
                 continue
             is_visited.append(key)
-            duration = round(q['legs'][0]['duration']['value'] / 60, 1)
+            duration = round(q['legs'][0]['duration_in_traffic']['value'] / 60, 1)
             if duration < self.__min_duration:
                 self.__min_duration = duration
             if self.__max_duration < duration:
@@ -104,7 +104,7 @@ class Trip:
                            '\t\t\ttime: \'' + d['time'] + '\',\n' + \
                            '\t\t\troutes: [\n'
             for r in d['routes']:
-                self.__text += '\t\t\t\t{duration: ' + str(r['duration']) + ', pathId:' + str(r['pathId']) + '},\n'
+                self.__text += '\t\t\t\t{duration: ' + ("%0.1f" % r['duration']) + ', pathId:' + str(r['pathId']) + '},\n'
             self.__text += '\t\t\t]\n' + \
                            '\t\t},\n'
         #data-ave
@@ -112,7 +112,7 @@ class Trip:
                        '\t\t\ttime: \'AVERAGE\',\n' + \
                        '\t\t\troutes: [\n'
         for k, v in self.__paths_stat.items():
-            self.__text += '\t\t\t\t{duration: ' + str(round(sum(v)/len(v), 1)) + ', pathId: ' + str(k) + '},\n'
+            self.__text += '\t\t\t\t{duration: ' + ("%0.1f" % round(sum(v)/len(v), 1)) + ', pathId: ' + str(k) + '},\n'
         self.__text += '\t\t\t]\n' + \
                        '\t\t}\n'
         self.__text += '\t];\n\n'
@@ -169,6 +169,7 @@ class Crawler:
             self.__cp_num += 1
             return
         keys = list(self.__queries.keys())
+        keys.sort()
         with open(pickle_dire + '/' + keys[0] + '.pickle', 'wb') as f:
             pickle.dump(self.__queries, f)
         self.__cp_num += 1
@@ -197,10 +198,9 @@ class Crawler:
         for v in self.__trips.values():
             v.write_trip()
         self.__write_queries()
-
 """""
 crawler = Crawler()
-s_time = local_date + timedelta(hours=15, minutes=00)
-f_time = local_date + timedelta(hours=19, minutes=00)
+s_time = local_date + timedelta(hours=6, minutes=00)
+f_time = local_date + timedelta(hours=9, minutes=00)
 crawler.crawl(s_time, f_time, dt=120, check_point=1850)
 """""

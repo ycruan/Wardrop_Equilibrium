@@ -42,22 +42,25 @@ html, body {
     position:absolute;
     z-index:3;
     left: 42.3%;
-    top: 18.5pt;
+    bottom: 0;
 }
 #clocktext{
-    height: 1.5cm;
-    width: 6cm;
-    font-size:42px;
+    height: 1.8cm;
+    width: 7cm;
+    font-size:56px;
     text-align: center;
     resize:none;
     border-style: none;
-    background: rgba(255,255,255,0.7);
-}
-#f8{
-    margin-left: 595pt;
+    background: rgba(255,255,255,0.9);
 }
 #git{
     height: 8pt;
+}
+#gitlogo{
+    position:absolute;
+    z-index:3;
+    right: 0.1%;
+    top: 0.5%;
 }
 .tdsel{
     min-width: 115pt;

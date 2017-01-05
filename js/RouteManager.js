@@ -54,7 +54,7 @@ define(['setColor', 'Utils'], function (setColor, Utils) {
                     this.removeCurr(keysToRemove, false);
                     var info = '<p>Duration:<br />';
                     for(var key in durations){
-                        info += key + ')\t' + durations[key] + ' min<br />';
+                        info += key + ')\t' + parseFloat(durations[key]).toFixed(1) + ' min<br />';
                     }
                     info += '</p>'
                     this.currInfoWin.setContent(info);
