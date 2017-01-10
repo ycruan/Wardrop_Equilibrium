@@ -173,7 +173,7 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
                         }
                     }
                 },
-                responsive: false
+                responsive: true
             });
 
             var lineChart = new Chart(lineCtx, {
@@ -224,7 +224,7 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
                             boxWidth: legendWidth
                         }
                     },
-                    responsive: false
+                    responsive: true
                 }
             });
 
@@ -268,7 +268,7 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
                             boxWidth: legendWidth
                         }
                     },
-                    responsive: false
+                    responsive: true
                 }
             });
 
@@ -311,7 +311,7 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
                             boxWidth: legendWidth
                         }
                     },
-                    responsive: false
+                    responsive: true
                 }
             });
 
