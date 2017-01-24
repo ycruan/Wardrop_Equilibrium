@@ -2,7 +2,7 @@
  * Created by ycruan on 12/31/16.
  */
 define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js'], function (Utils) {
-    return function(trip){
+    return function(trip, peak){
         try{
             var pieCanvas = document.getElementById('pieChart');
             var pieCtx = pieCanvas.getContext('2d');
@@ -30,9 +30,10 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
             var hiddenThreshold = 5;        //included
             var meanColor = 'rgba(255,0,0,0.5)';
             var stdevColor = 'rgba(0,0,255,0.5)';
+            var tickMin = 0;
+            var tickMax = 0;
             var legendWidth = 10;
             var axisTitleFont = 20;
-            var peak = data[0].time.substr(6, 2);
 
             var pieStat = [];
             var barStat = [];
@@ -53,9 +54,17 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
                 borderColor: stdevColor,
             }];
             if(peak == 'PM'){
-                barLabels = ['3-4 pm', '4-5 pm', '5-6 pm', '6-7 pm'];
-            } else{
+                barLabels = ['3-4 PM', '4-5 PM', '5-6 PM', '6-7 PM'];
+                tickMin = 3;
+                tickMax = 7;
+            } else if(peak == 'am'){
                 barLabels = ['6-7 am', '7-8 am', '8-9 am'];
+                tickMin = 6;
+                tickMax = 9;
+            } else{
+                barLabels = ['5-6 AM', '6-7 AM', '7-8 AM', '8-9 AM'];
+                tickMin = 5;
+                tickMax = 9;
             }
             for(var i = 0; i < barLabels.length; ++i){
                 barStat[i] = [];
@@ -193,19 +202,19 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
                             position: 'bottom',
                             type: 'linear',
                             ticks: {
-                                min: peak == 'PM'? 3 : 6,
-                                max: peak == 'PM'? 7 : 9
+                                min: tickMin,
+                                max: tickMax
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Time (h)',
+                                labelString: 'Time (h) - ' + peak,
                                 fontSize: axisTitleFont,
                                 fontStyle: 'bold'
                             }
                         }],
                         yAxes: [{
                             ticks: {
-                                min: trip.minDuration - 1
+                                min: Math.floor(trip.minDuration - 1)
                             },
                             scaleLabel: {
                                 display: true,
@@ -244,14 +253,6 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
                 },
                 options: {
                     scales: {
-                        xAxes:[{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Time (h)',
-                                fontSize: axisTitleFont,
-                                fontStyle: 'bold'
-                            }
-                        }],
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
@@ -283,12 +284,12 @@ define(['Utils' ,'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.mi
                             position: 'bottom',
                             type: 'linear',
                             ticks: {
-                                min: peak == 'PM'? 3 : 6,
-                                max: peak == 'PM'? 7 : 9
+                                min: tickMin,
+                                max: tickMax
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Time (h)',
+                                labelString: 'Time (h) - ' + peak,
                                 fontSize: axisTitleFont,
                                 fontStyle: 'bold'
                             }

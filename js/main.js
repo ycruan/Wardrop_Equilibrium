@@ -33,7 +33,6 @@ require(['https://maps.googleapis.com/maps/api/js?key=AIzaSyAik-rZtDygSileYBliV3
         var routeMana = RouteManager.createNew();
 
         var animationInterval = 350;
-        var onPlay = false;
 
         var table = document.getElementById("f2");
         table.addEventListener('resize', function (e) {
@@ -44,8 +43,10 @@ require(['https://maps.googleapis.com/maps/api/js?key=AIzaSyAik-rZtDygSileYBliV3
         dateSel.addEventListener('change', function () {
             var text = dateSel.options[this.selectedIndex].text;
             var clocktext = document.getElementById("clocktext");
-            if(text.substr(0,2) == 'PM') clocktext.value = '3-7 PM';
-            else clocktext.value = '6-9 AM';
+            var peak = text.substr(0,2);
+            if(peak == 'PM') clocktext.value = '3-7 PM';
+            else if(peak == 'am') clocktext.value = '6-9 am';
+            else clocktext.value = '5-9 AM';
         });
 
         var stat = document.getElementById("stat");
@@ -61,7 +62,7 @@ require(['https://maps.googleapis.com/maps/api/js?key=AIzaSyAik-rZtDygSileYBliV3
 
         var btn = document.getElementById("play");
         btn.addEventListener('click', function(){
-            if(onPlay){
+            if(window.onPlay){
                 btn.style.color = "green";
                 btn.innerHTML = "play";
                 for(var i = 0; i < 3; ++i){
@@ -84,7 +85,7 @@ require(['https://maps.googleapis.com/maps/api/js?key=AIzaSyAik-rZtDygSileYBliV3
                 currMarkers = markerMana.setMarker(map);
                 routeMana.displayNew(map, trip, animationInterval);
             }
-            onPlay = !onPlay;
+            window.onPlay = !window.onPlay;
         });
     } catch (e){
         //console.log(e);

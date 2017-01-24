@@ -36,8 +36,21 @@
         </table>
     </div>
     <br />
+
     <div id="sec1" class="infoBox section">
-        <p class="title">2. Path Tracing</p>
+        <p class="title">2. Time Slots</p>
+        <p class="intro">In this section, duration data are divided into several groups by the hour they are returned in the Google Map
+            query. For every slot, the in-slot average and standard
+            deviation are calculated. Here we don't distinguish different paths. Data from all paths are used for calculation.</p>
+    </div>
+    <br />
+    <canvas class="indcanvas" id="barChart" height="500" width="1400"></canvas>
+    <br />
+    <br />
+    <br />
+
+    <div id="sec2" class="infoBox section">
+        <p class="title">3. Path Tracing</p>
         <p class="intro">Every point in the chart below represents the moment a path is suggested by Google Map, and the corresponding
             travel duration if we take this path. Different paths are distinguished by their coordinates. Paths with the same text description
             but are comprised of even slightly different (lat, lng) pairs are regarded as different paths. Points belong to the same
@@ -50,17 +63,7 @@
     <br />
     <br />
     <br />
-    <div id="sec2" class="infoBox section">
-        <p class="title">3. Time Slots</p>
-        <p class="intro">In this section, duration data are divided into several groups by the hour they are returned in the Google Map
-            query. There should be 3 time slots for morning trips, and 4 for afternoon. For every slot, the in-slot average and standard
-            deviation are calculated. Here we don't distinguish different paths. Data from all paths are used for calculation.</p>
-    </div>
-    <br />
-    <canvas class="indcanvas" id="barChart" height="500" width="1400"></canvas>
-    <br />
-    <br />
-    <br />
+
     <div id="sec3" class="infoBox section">
         <p class="title">4. Time History</p>
         <p class="intro">The chart below keeps track of the mean and standard deviation of travel durations at each time step. A point in the

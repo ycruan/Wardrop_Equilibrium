@@ -18,7 +18,7 @@ html, body {
     background: cornflowerblue;
 }
 #map {
-    height: 96.5%;
+    height: 100%;
 }
 .td{
     border-style: solid;
@@ -39,14 +39,14 @@ html, body {
     height : 2cm;
 }
 #clock{
-    position:absolute;
     z-index:3;
-    left: 42.3%;
+    left: 41.0%;
     bottom: 0;
+    position: fixed;
 }
 #clocktext{
     height: 1.8cm;
-    width: 7cm;
+    width: 8.5cm;
     font-size:56px;
     text-align: center;
     resize:none;

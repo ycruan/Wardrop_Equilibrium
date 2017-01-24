@@ -18,7 +18,6 @@ define(['setColor', 'Utils'], function (setColor, Utils) {
                     for(var key in this.currPaths){
                         bitMap[key] = false;
                     }
-                    var durations = [];
                     for(var iter = 0; iter < routes.length; ++iter){
                         var r = routes[iter];
                         var ref = r.pathId.toString();
@@ -30,7 +29,9 @@ define(['setColor', 'Utils'], function (setColor, Utils) {
                                 geodesic: true,
                                 strokeColor: color,
                                 strokeOpacity: 1.0,
-                                strokeWeight: 3
+                                strokeWeight: 3,
+                                pathId: ref,
+                                duration: r.duration
                             });
                             //var gInfoWin = new google.maps.InfoWindow({content: " ", draggable: true});
                             //gInfoWin.setPosition(pts[Math.floor((Math.random() * (pts.length - 2)) + 1)]);
@@ -40,9 +41,9 @@ define(['setColor', 'Utils'], function (setColor, Utils) {
                         } else{
                             bitMap[ref] = true;
                             this.currPaths[ref].setOptions({strokeColor: color});
+                            this.currPaths[ref].duration = r.duration;
                         }
                         this.currPaths[ref].setMap(this.map);
-                        durations[ref] = (r.duration);
                         //this.currInfoWins[ref].setContent(r.duration.toString() + " min");
                     }
                     var keysToRemove = [];
@@ -53,10 +54,11 @@ define(['setColor', 'Utils'], function (setColor, Utils) {
                     }
                     this.removeCurr(keysToRemove, false);
                     var info = '<p>Duration:<br />';
-                    for(var key in durations){
-                        info += key + ')\t' + parseFloat(durations[key]).toFixed(1) + ' min<br />';
+                    for(var ref in this.currPaths){
+                        var p = this.currPaths[ref];
+                        info += p.pathId + ')\t' + parseFloat(p.duration).toFixed(1) + ' min<br />';
                     }
-                    info += '</p>'
+                    info += '</p>';
                     this.currInfoWin.setContent(info);
                 },
                 removeCurr : function (keys, clearInfoWin) {
@@ -94,7 +96,7 @@ define(['setColor', 'Utils'], function (setColor, Utils) {
                     var iter = 0;
                     this.interval = setInterval(function() {
                         if (iter >= data.length) {
-                            clearInterval(rm.interval);
+                            //clearInterval(rm.interval);
                             document.getElementById('play').click();
                         } else {
                             clocktext.value = data[iter].time;
@@ -105,6 +107,67 @@ define(['setColor', 'Utils'], function (setColor, Utils) {
                 },
                 stop : function () {
                     clearInterval(this.interval);
+                    var clocktext = document.getElementById("clocktext");
+                    var clockValue = clocktext.value;
+                    var cp = this.currPaths;
+                    doSearch = function () {
+                        var txtInput = document.getElementById('txtInput');
+                        var path = cp[txtInput.value];
+                        if(path == undefined){
+                            alert('invalid path number');
+                            return;
+                        }
+                        for(var k in cp){
+                            cp[k].setMap(null);
+                        }
+                        path.setMap(rm.map);
+                        var newInfo =  getNewInfo(path, true);
+                        rm.currInfoWin.setContent(newInfo);
+                    };
+                    getNewInfo = function (path, ifRestore) {
+                        var newInfo = path.pathId + ') ' + parseFloat(path.duration).toFixed(1) + ' min' + '<br />' +
+                            '<small>via ' + rm.paths[path.pathId].desc + '</small>';
+                        if(ifRestore) newInfo += '<br /> <br /> Click map to restore </p>';
+                        return newInfo;
+                    };
+                    var infoContent = this.currInfoWin.getContent();
+                    infoContent = infoContent.substr(0, infoContent.length - 4);
+                    if(Object.keys(cp).length > 1){
+                        infoContent += '<br/ > <input type="text" id="txtInput" maxlength="3" size="3" />&nbsp<input type="submit" id="btnSearch" value="find" onclick="doSearch();" /> <br /> </p>';
+                        rm.currInfoWin.setContent(infoContent);
+                    } else{
+                        infoContent = getNewInfo(cp[Object.keys(cp)[0]], false);
+                        rm.currInfoWin.setContent(infoContent);
+                    }
+                    google.maps.event.addListener(this.map, 'click', function () {
+                        if(Object.keys(cp).length == 1 || window.onPlay) return;
+                        for(var k in cp){
+                            cp[k].setMap(rm.map);
+                        }
+                        rm.currInfoWin.setContent(infoContent);
+                    });
+                    for(var ref in cp){         //closure loop
+                        (function(ref) {
+                            var path = cp[ref];
+                            google.maps.event.addListener(path, 'mouseover', function () {
+                                if(window.onPlay) return;
+                                clocktext.value = path.pathId + ') ' + parseFloat(path.duration).toFixed(1) + ' min';
+                            });
+                            google.maps.event.addListener(path, 'mouseout', function () {
+                                if(window.onPlay) return;
+                                clocktext.value = clockValue;
+                            });
+                            google.maps.event.addListener(path, 'click', function () {
+                                if(Object.keys(cp).length == 1 || window.onPlay) return;
+                                for(var k in cp){
+                                    cp[k].setMap(null);
+                                }
+                                path.setMap(rm.map);
+                                var newInfo = getNewInfo(path, true);
+                                rm.currInfoWin.setContent(newInfo);
+                            });
+                        })(ref);
+                    }
                 }
             };
             return rm;
