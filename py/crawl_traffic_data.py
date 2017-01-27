@@ -7,6 +7,11 @@ import pickle
 import time
 
 client = googlemaps.Client(key="AIzaSyB3NeUqcq1e-ecQSBF_6G54IBo0_34Qy0Y")
+now = datetime.now()
+peak = 'PM'
+if now.hour < 8:
+    peak = 'AM'
+    client = googlemaps.Client(key="AIzaSyAik-rZtDygSileYBliV3X6tCA66cYg50E")
 
 loc = {
     'A': {'lat': 34.161328, 'lng': -118.167635},   #Rose bowl
@@ -20,8 +25,8 @@ idxMap = ['A', 'B', 'C', 'D', 'E']
 
 local_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 date_string = local_date.strftime('%m%d%y')
-date_dire = './' + date_string
-data_dire = date_dire + '/data/' + date_string
+date_dire = './' + peak + date_string
+data_dire = date_dire + '/data/' + peak + date_string
 pickle_dire = date_dire + '/pickle'
 recovery_dire = './recovery'
 
@@ -198,9 +203,15 @@ class Crawler:
         for v in self.__trips.values():
             v.write_trip()
         self.__write_queries()
-"""""
+
 crawler = Crawler()
-s_time = local_date + timedelta(hours=6, minutes=00)
-f_time = local_date + timedelta(hours=9, minutes=00)
+if peak == 'PM':
+    td1 = timedelta(hours=15, minutes=00)
+    td2 = timedelta(hours=19, minutes=00)
+else:
+    td1 = timedelta(hours=5, minutes=00)
+    td2 = timedelta(hours=9, minutes=00)
+
+s_time = local_date + td1
+f_time = local_date + td2
 crawler.crawl(s_time, f_time, dt=120, check_point=1850)
-"""""

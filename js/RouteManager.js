@@ -127,7 +127,7 @@ define(['setColor', 'Utils'], function (setColor, Utils) {
                     getNewInfo = function (path, ifRestore) {
                         var newInfo = path.pathId + ') ' + parseFloat(path.duration).toFixed(1) + ' min' + '<br />' +
                             '<small>via ' + rm.paths[path.pathId].desc + '</small>';
-                        if(ifRestore) newInfo += '<br /> <br /> Click map to restore </p>';
+                        if(ifRestore) newInfo += '<br /> <br /> Click map to reset </p>';
                         return newInfo;
                     };
                     var infoContent = this.currInfoWin.getContent();
