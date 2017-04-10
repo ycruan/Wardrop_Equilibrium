@@ -17,7 +17,7 @@ The 5 locations as follow are investigated:
 
 
 2. Time Periods
----
+--
 We inspect the two rush hours:
 
   * AM Peak: 5 - 9 AM
