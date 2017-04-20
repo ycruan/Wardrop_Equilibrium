@@ -5,7 +5,7 @@ This project crawls and visualizes traffic data for 5 locations in LA.
 Animated and statistical tools are provided to help determine whether a Wardrop Equilibrium is achieved in real time traffic.
 Click [here](http://ycruan.github.io/Wardrop_Equilibrium) to visit the IO page.
 
-1. Locations
+1 Locations
 --
 The 5 locations as follow are investigated:
 
@@ -16,7 +16,7 @@ The 5 locations as follow are investigated:
   * E: Speedway = (lat: 34.110381, lng: -117.987364)
 
 
-2. Time Periods
+2 Time Periods
 --
 We inspect the two rush hours:
 
@@ -25,7 +25,7 @@ We inspect the two rush hours:
 
 *(For historical reasons, there are a few morning hour data spanning from 6 am to 9 am. They are therefore labeled as lower case "am", instead of the ordinary "AM", for distinction.)*
 
-3. Data
+3 Data
 --
 All data are collected in real time via the [Google Map Python API](https://github.com/googlemaps/google-maps-services-python).
 A query is made every 2 minutes for all the 20 OD pairs. So there are in total 120 data points for both AM peak and PM peak. The default [(best_guess)](https://developers.google.com/maps/documentation/directions/intro#RequestParameters) traffic model was used to estimate the in-traffic duration.
@@ -33,7 +33,7 @@ A query is made every 2 minutes for all the 20 OD pairs. So there are in total 1
 The processed data are stored as .js files in [./js/data](https://github.com/ycruan/Wardrop_Equilibrium/tree/gh-pages/js/data). For raw data please contact with the [author](mailto:ethan.ruan@berkeley.edu).
 
 
-4. Visualization
+4 Visualization
 --
 With the help of the [Google Map JavaScript API](https://developers.google.com/maps/documentation/javascript/)
 and [Chart.js](http://www.chartjs.org/), we provide online tools to visualize the traffic data. Including a on-map animation and a series of
